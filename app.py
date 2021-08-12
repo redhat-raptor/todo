@@ -1,11 +1,17 @@
 from chalice import Chalice
+from os import environ as env
+import redis
+
+redis_client = redis.Redis(host=env.get('REDIS_HOST'), port=env.get('REDIS_PORT'), password=env.get('REDIS_PASSWORD'))
+redis_client.set('todo', '{"foo": "bar"}')
 
 app = Chalice(app_name='todo')
 
 
 @app.route('/todo')
 def index():
-    return {'hello': 'world'}
+    todo = redis_client.get('todo')
+    return todo
 
 
 @app.route('/todo', methods=['POST'])

@@ -9,7 +9,8 @@
         "AWSREGION": "us-east-1",
         "PARAMETER_STORE_NAMESPACE": "/dev/lead-collector",
         "REDIS_HOST": "redis-10591.c252.ap-southeast-1-1.ec2.cloud.redislabs.com",
-        "REDIS_PORT": "10591"
+        "REDIS_PORT": "10591",
+        "REDIS_PASSWORD": ""
       }
     }
   }

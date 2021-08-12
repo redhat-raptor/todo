@@ -142,3 +142,4 @@ cython_debug/
 
 .chalice/deployments/
 .chalice/venv/
+.env

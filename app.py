@@ -1,7 +1,9 @@
 from chalice import Chalice
 from os import environ as env
+from dotenv import load_dotenv
 import redis
 
+load_dotenv()
 redis_client = redis.Redis(host=env.get('REDIS_HOST'), port=env.get('REDIS_PORT'), password=env.get('REDIS_PASSWORD'))
 redis_client.set('todo', '{"foo": "bar"}')
 

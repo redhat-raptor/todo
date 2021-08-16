@@ -1,9 +1,11 @@
 from chalice import Chalice
 from os import environ as env
 from dotenv import load_dotenv
+from os.path import join, dirname
 import redis
 
-load_dotenv()
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 redis_client = None
 
 app = Chalice(app_name='todo')
@@ -13,7 +15,6 @@ app = Chalice(app_name='todo')
 def index():
     redis_connect()
     redis_client.set('todo', '{"foo": "bar"}')
-    
     todo = redis_client.get('todo')
     return todo
 
@@ -25,3 +26,6 @@ def create_user():
 
 def redis_connect():
     redis_client = redis.Redis(host=env.get('REDIS_HOST'), port=env.get('REDIS_PORT'), password=env.get('REDIS_PASSWORD'))
+
+
+redis_connect()

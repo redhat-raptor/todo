@@ -5,7 +5,7 @@ import json
 
 app = Chalice(app_name='todo')
 
-@app.route('/todo')
+@app.route('/todo', cors=True)
 def index():
     try:
         redis_client = redis_connect()
@@ -23,7 +23,7 @@ def index():
     
     return json.loads(todo_content)
 
-@app.route('/todo', methods=['POST'])
+@app.route('/todo', methods=['POST'], cors=True)
 def create_user():
     redis_client = redis_connect()
     todo_payload = app.current_request.json_body
